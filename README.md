@@ -6,6 +6,8 @@ This repository only hosts the downloads. The app is notarized by Apple.
 
 ## Install
 
+The easiest way is the download page: https://ayeh.github.io/antaraFlow-releases/ (it always shows the newest version).
+
 **Download:** get `antaraFlow-<version>.dmg` from the [latest release](../../releases/latest), open it and drag antaraFlow to Applications.
 
 **Homebrew:**
