@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>antaraFlow for Mac</title>
-<meta name="description" content="antaraFlow puts WhatsApp, Telegram, Mail and your other messaging services in one Mac window. Free download for macOS 13 or later.">
+<title>antaraFlow for Mac and Windows</title>
+<meta name="description" content="antaraFlow puts WhatsApp, Telegram, Mail and your other messaging services in one window. Free download for macOS 13 or later and Windows 10 or later.">
 <meta name="color-scheme" content="light">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <style>
@@ -34,10 +34,15 @@
   h1 { margin: 0; font-weight: 700; font-size: clamp(44px, 7.4vw, 92px); line-height: 0.98; letter-spacing: -0.035em; }
   .lead { margin: 28px 0 0; max-width: 34em; font-size: clamp(18px, 2.2vw, 21px); color: var(--sub); }
 
-  .get { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+  .downloads { margin-top: 36px; display: flex; flex-direction: column; gap: 28px; }
+  .get { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
   .btn { display: inline-flex; align-items: baseline; gap: 14px; background: var(--ink); color: #fff; text-decoration: none; padding: 17px 26px; border-radius: 14px; font-weight: 650; font-size: 18px; transition: background .15s, color .15s; }
   .btn:hover { background: var(--yellow); color: var(--ink); }
   .btn small { font-weight: 500; font-size: 15px; opacity: .72; }
+  .get + .get .btn { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+  .get + .get .btn:hover, .btn.off { background: var(--tile); color: var(--ink); }
+  .btn.off { box-shadow: inset 0 0 0 2px var(--ink); cursor: default; }
+  .get:first-child .btn.off { background: var(--tile); }
   .meta { margin: 0; font-size: 15px; color: var(--sub); line-height: 1.45; }
 
   .art { margin: 0; justify-self: end; width: min(100%, 460px); }
@@ -92,10 +97,16 @@
   <div class="wrap hero">
     <div>
       <h1>Every chat.<br>One window.</h1>
-      <p class="lead">antaraFlow puts WhatsApp, Telegram, Mail and your other messaging services side by side in one Mac app. Each keeps its own login, and your unread count sits in the Dock.</p>
-      <div class="get">
-        <a class="btn" id="download" href="https://github.com/ayeh/antaraFlow-releases/releases/latest">Download for Mac <small id="dl-version"></small></a>
-        <p class="meta" id="dl-meta">Needs macOS 13 or later.<br>Notarized by Apple, so it opens without warnings.</p>
+      <p class="lead">antaraFlow puts WhatsApp, Telegram, Mail and your other messaging services side by side in one app for Mac and Windows. Each keeps its own login, and your unread count sits in the Dock or on the taskbar.</p>
+      <div class="downloads" id="downloads">
+        <div class="get" id="get-mac">
+          <a class="btn" id="download" href="https://github.com/ayeh/antaraFlow-releases/releases/latest">Download for Mac <small id="dl-version"></small></a>
+          <p class="meta" id="dl-meta">Needs macOS 13 or later.<br>Notarized by Apple, so it opens without warnings.</p>
+        </div>
+        <div class="get" id="get-win">
+          <a class="btn" id="download-win" href="https://github.com/ayeh/antaraFlow-releases/releases/latest">Download for Windows <small id="dl-version-win"></small></a>
+          <p class="meta" id="dl-meta-win">Needs Windows 10 or later, 64-bit.<br>Not signed yet, so Windows may ask you to confirm: choose More info, then Run anyway.</p>
+        </div>
       </div>
     </div>
     <figure class="art"><img src="assets/mascot.png" alt="The antaraFlow mascot, a person with a cardboard box for a head, waving" width="540" height="543"></figure>
@@ -108,9 +119,9 @@
         <div><dt>Separate logins</dt><dd>Every service runs in its own page with its own sign-in, so accounts never mix.</dd></div>
         <div><dt>Work and personal, apart</dt><dd>Switch between workspaces to show only the services you need right now.</dd></div>
         <div><dt>One inbox you can search</dt><dd>Recent messages from every service in one list, with search across all of them.</dd></div>
-        <div><dt>Unread counts you can see</dt><dd>A badge in the Dock and a count in the menu bar, even when the window is closed.</dd></div>
-        <div><dt>Locks with Touch ID</dt><dd>antaraFlow locks when your Mac's screen locks, and opens with Touch ID or your password.</dd></div>
-        <div><dt>Private by default</dt><dd>Settings stay on your Mac. AI apps such as Claude can read your messages only if you turn that on, read-only and on this Mac.</dd></div>
+        <div><dt>Unread counts you can see</dt><dd>A badge on the Dock or taskbar and the total in the menu bar or system tray, even when the window is closed.</dd></div>
+        <div><dt>Locks when you step away</dt><dd>antaraFlow locks itself and opens with Touch ID on a Mac or Windows Hello on a PC, or with your password.</dd></div>
+        <div><dt>Private by default</dt><dd>Settings stay on your computer. AI apps such as Claude can read your messages only if you turn that on, read-only and on this computer.</dd></div>
       </dl>
     </div>
   </section>
@@ -134,7 +145,7 @@
       <h2>Install</h2>
       <div class="how">
         <div>
-          <h3>From the download</h3>
+          <h3>On a Mac: from the download</h3>
           <ol>
             <li>Open the downloaded <code>.dmg</code>.</li>
             <li>Drag antaraFlow into Applications.</li>
@@ -142,7 +153,15 @@
           </ol>
         </div>
         <div>
-          <h3>With Homebrew</h3>
+          <h3>On Windows: from the download</h3>
+          <ol>
+            <li>Run the downloaded <code>-setup.exe</code>. It installs for you alone and needs no administrator rights.</li>
+            <li>If Windows SmartScreen warns that the app is unrecognised, choose More info, then Run anyway. The installer is not signed yet.</li>
+            <li>Open antaraFlow from the Start menu. After that it updates itself.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>On a Mac: with Homebrew</h3>
           <p>Newer Homebrew asks you to trust a tap before it uses it. The second line does that for this one only.</p>
           <div class="cmd">
             <pre id="brew">brew tap ayeh/antaraflow
@@ -158,7 +177,7 @@ brew install --cask antaraflow</pre>
 
 <footer>
   <div class="wrap">
-    <span>antaraFlow for macOS</span>
+    <span>antaraFlow for macOS and Windows</span>
     <a href="https://github.com/ayeh/antaraFlow-releases/releases">Releases</a>
   </div>
 </footer>
@@ -167,21 +186,56 @@ brew install --cask antaraflow</pre>
 
 <script>
 (function () {
-  var API = "https://api.github.com/repos/ayeh/antaraFlow-releases/releases/latest";
+  var API = "https://api.github.com/repos/ayeh/antaraFlow-releases/releases?per_page=10";
   var $ = function (id) { return document.getElementById(id); };
+  var asset = function (rel, re) { return (rel.assets || []).filter(function (a) { return re.test(a.name); })[0]; };
+  var megabytes = function (a) { return (a.size / 1048576).toFixed(1) + " MB"; };
+  var lines = function (el, first, second) {
+    el.innerHTML = "";
+    el.appendChild(document.createTextNode(first));
+    el.appendChild(document.createElement("br"));
+    el.appendChild(document.createTextNode(second));
+  };
 
-  function show(rel) {
-    var dmg = (rel.assets || []).filter(function (a) { return /\.dmg$/i.test(a.name); })[0];
-    var version = String(rel.tag_name || "").replace(/^v/i, "");
+  // People on Windows see the Windows download first.
+  if (/Win/i.test(navigator.platform || "") || /Windows/i.test(navigator.userAgent || "")) {
+    $("downloads").insertBefore($("get-win"), $("get-mac"));
+  }
+
+  function showWindows(releases) {
+    // The newest release that has a Windows installer, which may be older than the Mac one.
+    var rel = releases.filter(function (r) { return asset(r, /-setup\.exe$/i); })[0];
+    var btn = $("download-win");
+    if (!rel) {
+      btn.removeAttribute("href");
+      btn.removeAttribute("download");
+      btn.setAttribute("aria-disabled", "true");
+      if (!/\boff\b/.test(btn.className)) btn.className += " off";
+      btn.firstChild.nodeValue = "Windows version coming soon";
+      $("dl-version-win").textContent = "";
+      $("dl-meta-win").textContent = "Needs Windows 10 or later, 64-bit.";
+      return;
+    }
+    var exe = asset(rel, /-setup\.exe$/i);
+    btn.className = btn.className.replace(/\s*\boff\b/, "");
+    btn.removeAttribute("aria-disabled");
+    btn.firstChild.nodeValue = "Download for Windows ";
+    btn.href = exe.browser_download_url;
+    btn.setAttribute("download", "");
+    $("dl-version-win").textContent = "v" + String(rel.tag_name || "").replace(/^v/i, "");
+    lines($("dl-meta-win"), "Needs Windows 10 or later, 64-bit, " + megabytes(exe) + ".", "Not signed yet, so Windows may ask you to confirm: choose More info, then Run anyway.");
+  }
+
+  function show(releases) {
+    var rel = releases[0];
+    var dmg = rel && asset(rel, /\.dmg$/i);
+    var version = rel ? String(rel.tag_name || "").replace(/^v/i, "") : "";
     if (!dmg || !version) throw new Error("no dmg");
     $("download").href = dmg.browser_download_url;
     $("download").setAttribute("download", "");
     $("dl-version").textContent = "v" + version;
-    var mb = (dmg.size / 1048576).toFixed(1) + " MB";
-    $("dl-meta").innerHTML = "";
-    $("dl-meta").appendChild(document.createTextNode("Needs macOS 13 or later, " + mb + "."));
-    $("dl-meta").appendChild(document.createElement("br"));
-    $("dl-meta").appendChild(document.createTextNode("Notarized by Apple, so it opens without warnings."));
+    lines($("dl-meta"), "Needs macOS 13 or later, " + megabytes(dmg) + ".", "Notarized by Apple, so it opens without warnings.");
+    showWindows(releases);
     $("ver").textContent = "v" + version;
     var when = rel.published_at ? new Date(rel.published_at).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : "";
     $("ver-meta").textContent = when ? "Released " + when : "";
@@ -191,15 +245,19 @@ brew install --cask antaraflow</pre>
   function fail() {
     $("ver").textContent = "Latest";
     $("ver-meta").textContent = "";
-    $("notes").textContent = "Could not load the release notes. The download button still takes you to the newest version.";
+    $("notes").textContent = "Could not load the release notes. The download buttons still take you to the newest version.";
   }
 
   var cached = null;
-  try { cached = JSON.parse(sessionStorage.getItem("antaraflow-latest")); } catch (e) {}
+  try { cached = JSON.parse(sessionStorage.getItem("antaraflow-releases")); } catch (e) {}
   if (cached) { try { show(cached); } catch (e) { cached = null; } }
   fetch(API, { headers: { Accept: "application/vnd.github+json" } })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (rel) { show(rel); try { sessionStorage.setItem("antaraflow-latest", JSON.stringify(rel)); } catch (e) {} })
+    .then(function (list) {
+      var releases = list.filter(function (r) { return !r.draft && !r.prerelease; });
+      show(releases);
+      try { sessionStorage.setItem("antaraflow-releases", JSON.stringify(releases)); } catch (e) {}
+    })
     .catch(function () { if (!cached) fail(); });
 
   $("copy").addEventListener("click", function () {
